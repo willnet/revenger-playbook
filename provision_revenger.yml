@@ -1,0 +1,3 @@
+---
+- include: openssl.yml, hosts=revenger
+- include: nginx.yml, hosts=revenger

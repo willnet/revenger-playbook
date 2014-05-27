@@ -1,0 +1,17 @@
+- sudo: yes
+  hosts: "{{ hosts }}"  
+  vars:
+    version: nginx-1.4.1
+    install_path: /usr/local/nginx
+    src: /tmp
+  tasks:
+    - get_url: url=http://nginx.org/download/{{ version }}.tar.gz dest={{ src }}
+    - command: tar xvfz {{ version }}.tar.gz chdir={{ src }} creates={{ src }}/{{ version }}
+    - command: >
+        ./configure
+        --prefix={{ install_path }}
+        --with-http_ssl_module
+        --with-http_stub_status_module
+        chdir={{ src }}/{{ version }}
+    - command: make chdir={{ src }}/{{ version }}
+    - command: make install chdir={{ src }}/{{ version }

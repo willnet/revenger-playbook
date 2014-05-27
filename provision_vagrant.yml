@@ -1,2 +1,3 @@
 ---
-- include: openssl.yml
+- include: openssl.yml hosts=revenger-vagrant
+- include: nginx.yml hosts=revenger-vagrant
