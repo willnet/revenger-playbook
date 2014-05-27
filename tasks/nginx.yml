@@ -5,6 +5,12 @@
     install_path: /usr/local/nginx
     src: /tmp
   tasks:
+    - name: be sure pcre is installed
+      yum: name=pcre-7.8 state=installed
+
+    - name: be sure pcre-devel is installed
+      yum: name=pcre-devel-7.8 state=installed
+
     - get_url: url=http://nginx.org/download/{{ version }}.tar.gz dest={{ src }}
     - command: tar xvfz {{ version }}.tar.gz chdir={{ src }} creates={{ src }}/{{ version }}
     - command: >
