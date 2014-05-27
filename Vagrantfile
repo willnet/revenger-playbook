@@ -123,9 +123,4 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   chef.validation_client_name = "ORGNAME-validator"
 
   config.vm.network :private_network, ip: "192.168.111.222"
-
-  config.vm.provision :ansible do |ansible|
-    ansible.playbook = "provision_vagrant.yml"
-    ansible.inventory_path = "vagrant-hosts"
-  end
 end
