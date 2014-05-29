@@ -1,5 +1,5 @@
 - sudo: yes
-  hosts: "{{ hosts }}"  
+  hosts: "{{ hosts }}"
   vars:
     version: nginx-1.4.1
     install_path: /usr/local/nginx
@@ -21,3 +21,6 @@
         chdir={{ src }}/{{ version }}
     - command: make chdir={{ src }}/{{ version }}
     - command: make install chdir={{ src }}/{{ version }}
+
+    - template: src=./../templates/nginx.j2 dest=/etc/init.d/nginx owner=root group=root mode=0755
+    - template: src=./../templates/nginx.conf.j2 dest=/usr/local/nginx/conf/nginx.conf owner=root group=root mode=0644
