@@ -1,0 +1,21 @@
+- sudo: yes
+  hosts: "{{ hosts }}"
+  vars:
+    version: 2.1.2
+    install_path: /usr/local/rbenv
+  tasks:
+    - name: be sure libraries which ruby needs are installed
+      yum: name={{ item }} state=installed
+      with_items:
+        - libyaml
+        - libyaml-devel
+        - zlib
+        - zlib-devel
+        - readline
+        - readline-devel
+        - openssl
+        - openssl-devel
+        - libxml2
+        - libxml2-devel
+        - libxslt
+        - libxslt-devel
