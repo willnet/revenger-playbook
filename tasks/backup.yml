@@ -1,8 +1,7 @@
 - sudo: yes
   hosts: "{{ hosts }}"
-  vars:
-    s3_key: 'hoge'
-    s3_secret_key: 'fuga'
+  vars_files:
+    - ./../vars/s3.yml
   tasks:
     - file: dest=/opt/revenger/shared/models state=directory
     - template: src=./../templates/backup.rb.j2 dest=/opt/revenger/shared/backup.rb
