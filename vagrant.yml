@@ -1,4 +1,5 @@
 ---
 - include: tasks/rbenv.yml hosts=revenger-vagrant
-#- include: tasks/openssl.yml hosts=revenger-vagrant
+- include: tasks/backup.yml hosts=revenger-vagrant
+- include: tasks/openssl.yml hosts=revenger-vagrant
 #- include: tasks/nginx.yml hosts=revenger-vagrant
