@@ -1,0 +1,4 @@
+---
+- include: tasks/backup.yml hosts=jenkins
+- include: tasks/openssl.yml hosts=jenkins
+#- include: tasks/nginx.yml hosts=revenger-vagrant
