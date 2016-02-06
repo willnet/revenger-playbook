@@ -1,0 +1,17 @@
+- vars:
+    rbenv_root: /usr/local/rbenv
+    ruby_version: 2.3.0
+  tasks:
+    - name: Install rbenv
+      sudo: yes
+      git: repo=https://github.com/sstephenson/rbenv.git dest={{ rbenv_root }}
+
+    - name: Install ruby-build
+      sudo: yes
+      git: repo=https://github.com/sstephenson/ruby-build.git dest={{ rbenv_root }}/plugins/ruby-build
+
+    - name: Install ruby with rbenv
+      shell: bash -lc "CONFIGURE_OPTS="--disable-install-rdoc" rbenv install {{ ruby_version }}"
+
+    - name: "set ruby {{ ruby_version }} for system"
+      shell: bash -lc "rbenv global {{ ruby_version }} && rbenv rehash"

@@ -1,4 +1,6 @@
 ---
-- include: tasks/backup.yml hosts=jenkins
-- include: tasks/openssl.yml hosts=jenkins
+- hosts: web
+- include: tasks/backup.yml
+- include: tasks/openssl.yml
+- include: tasks/rbenv.yml
 #- include: tasks/nginx.yml hosts=revenger-vagrant
