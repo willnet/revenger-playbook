@@ -1,5 +1,0 @@
----
-- include: tasks/backup.yml hosts=revenger
-- include: tasks/openssl.yml hosts=revenger
-- include: tasks/rbenv.yml hosts=revenger
-  #- include: tasks/nginx.yml hosts=revenger

@@ -1,6 +1,0 @@
-- sudo: yes
-  hosts: "{{ hosts }}"
-  tasks:
-    - name: be sure openssl is installed
-      yum: name=openssl-1.0.1e state=installed
-#      notify: restart nginx

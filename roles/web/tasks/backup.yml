@@ -1,5 +1,4 @@
 - sudo: yes
-  hosts: "{{ hosts }}"
   vars_files:
     - ./../vars/s3.yml
   tasks:

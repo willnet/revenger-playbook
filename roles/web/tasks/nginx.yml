@@ -1,5 +1,4 @@
 - sudo: yes
-  hosts: "{{ hosts }}"
   vars:
     version: nginx-1.4.1
     install_path: /usr/local/nginx
