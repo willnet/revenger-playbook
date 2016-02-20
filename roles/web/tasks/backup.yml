@@ -1,7 +1,6 @@
-- sudo: yes
-  vars_files:
-    - ./../vars/s3.yml
-  tasks:
-    - file: dest=/opt/revenger/shared/models state=directory
-    - template: src=./../templates/backup.rb.j2 dest=/opt/revenger/shared/backup.rb
-    - template: src=./../templates/db_backup.rb.j2 dest=/opt/revenger/shared/models/db_backup.rb
+- include_vars: s3.yml
+- file: dest=/opt/revenger/shared/models state=directory
+  become: yes
+  become_method: sudo
+- template: src=./../templates/backup.rb.j2 dest=/opt/revenger/shared/backup.rb
+- template: src=./../templates/db_backup.rb.j2 dest=/opt/revenger/shared/models/db_backup.rb

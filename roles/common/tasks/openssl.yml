@@ -1,3 +1,5 @@
-- tasks:
-  - name: be sure openssl is installed
-    yum: name=openssl-1.0.1e state=installed
+- name: be sure openssl is installed
+  yum: name=openssl-1.0.1e state=installed
+  become: yes
+  become_method: sudo
+  # notify: restart nginx
