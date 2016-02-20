@@ -13,11 +13,11 @@ ansible -i hosts revenger.in -m ping
 ### production
 
 ```
-ansible-playbook -i hosts revenger.yml --ask-vault-pass
+ansible-playbook site.yml -i production --ask-vault-pass
 ```
 
 ### staging
 
 ```
-ansible-playbook -i staging-hosts revenger-staging.yml --ask-vault-pass
+ansible-playbook site.yml -i staging --ask-vault-pass
 ```
