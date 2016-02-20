@@ -1,0 +1,66 @@
+# encoding: utf-8
+
+##
+# Backup Generated: db_backup
+# Once configured, you can run the backup with the following command:
+#
+# $ backup perform -t db_backup [-c <path_to_configuration_file>]
+#
+# For more information about Backup's components, see the documentation at:
+# http://meskyanichi.github.io/backup
+#
+
+database_yml = File.expand_path('../../database.yml',  __FILE__)
+RAILS_ENV    = ENV['RAILS_ENV'] || 'development'
+
+require 'yaml'
+config = YAML.load_file(database_yml)
+
+Model.new(:db_backup, 'Description for db_backup') do
+
+  ##
+  # MySQL [Database]
+  #
+  database MySQL do |db|
+    db.name               = config[RAILS_ENV]["database"]
+    db.username           = config[RAILS_ENV]["username"]
+    db.password           = config[RAILS_ENV]["password"]
+    db.socket             = config[RAILS_ENV]["socket"]
+    db.skip_tables        = []
+  end
+
+  ##
+  # Amazon Simple Storage Service [Storage]
+  #
+  store_with S3 do |s3|
+    s3.access_key_id      = "{{ s3_key }}"
+    s3.secret_access_key  = "{{ s3_secret_key }}"
+    s3.region             = 'ap-northeast-1' # Tokyo
+    s3.bucket             = 'revenger-backup'
+    s3.path               = config[RAILS_ENV]["database"]
+  end
+
+  ##
+  # Gzip [Compressor]
+  #
+  compress_with Gzip
+
+  ##
+  # Mail [Notifier]
+  #
+  # The default delivery method for Mail Notifiers is 'SMTP'.
+  # See the documentation for other delivery options.
+  #
+  notify_by Mail do |mail|
+    mail.from                 = 'system@revenger.in'
+    mail.to                   = 'netwillnet@gmail.com'
+    mail.address              = 'localhost'
+    mail.domain               = 'revenger.in'
+    mail.authentication       = "plain"
+    mail.encryption           = :none
+
+    mail.on_success           = true
+    mail.on_warning           = true
+    mail.on_failure           = true
+  end
+end
